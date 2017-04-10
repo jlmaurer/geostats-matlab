@@ -33,10 +33,10 @@ switch model
         
         % set a lower threshold on covariance and always include nugget
         thresh = (c(1)+c(3))*eps; 
-        [~, C] = Gaussian_vario(c, h, thresh,1); 
+        [~, C] = gaussianVario(c, h, thresh,1); 
         
     case 'exponential'
-        [~, C] = Exponential_vario(c, h);
+        [~, C] = exponentialVario(c, h);
 
     case 'linear'
         [~, C] = linearVario(c, h, include_nugget);

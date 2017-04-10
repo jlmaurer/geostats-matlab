@@ -25,7 +25,7 @@ H1 = distance_(allx, allx);
 % nXY = (maxX+1)*(maxY+1); 
 
 % compute true data on grid
-[~,c] = Gaussian_vario(ptru, H1); 
+[~,c] = gaussianVario(ptru, H1); 
 corr = struct('C', c, 'name', 'gauss', 'c0', ptru(2), 'sigma', ptru(1));
 [F,KL] = randomfield(corr,allx);
 dtru = F + s1*allx(:,1) + s2*allx(:,2); 
@@ -54,7 +54,7 @@ Vs = reshape(Vsig, maxX+1, maxY+1);
 
 Residuals = reshape(Vest - dtest, maxX+1, maxY+1); 
 Rn=abs(.5*Residuals./Vs);
-[~,sig2] = Gaussian_vario(param, 0, [], 1); 
+[~,sig2] = gaussianVario(param, 0, [], 1); 
 totalMisfit = (1/sig2)*Residuals(:)'*eye(length(XY))*Residuals(:);  
 
 figure;
