@@ -9,11 +9,11 @@ tested it on 2-D data sets, with some limited tests in 1D.
 variogramfit.m and randomfield.m are two optional functions that can be used with geostatm. randomfield was developed by 
 Qiqi Wang (qiqi@mit.edu) and Paul G. Constantine (paul.constantine@stanford.edu). It is used to generate random fields with 
 a given covariance structure, and can also be used for conditional simulation, although currently I don't use their code to 
-do this. Variogramfit is an alternative to lsqcurvefit from Wolfgang Schwanghart which I use by default for estimating the parameters of the theoretical variogram. In my experience, lsqcurvefit typically does better but the difference may be small depending on the situation. The licenses from both of these files are included in this repository, and both are also available
-online. 
+do this. Variogramfit is an alternative to lsqcurvefit from Wolfgang Schwanghart which I use by default for estimating the parameters of the theoretical variogram. In my experience, lsqcurvefit typically does better but the difference may be small depending on the situation. Both of these codes can be obtained from the Matlab file Exchange. The only required dependency is 
+that testing_geostatm currently calls randomfield. 
 
 ## License
-This code is licensed under the MIT license. It is free to use and distribute. If you use this code for a publication please do 
+All of the codes in this repository except those listed above under dependencies is licensed under the MIT license. It is free to use and distribute. If you use this code for a publication please do 
 include a citation to this repository. 
 
 ## Example
