@@ -26,8 +26,7 @@ end
 
 switch model
     case 'nugget'
-        C = zeros(size(h)); 
-        C(1) = c; 
+        C = c*eye(size(h)); 
 
     case 'Gaussian'
         % set a lower threshold on covariance and always include nugget
