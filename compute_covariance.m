@@ -35,10 +35,10 @@ switch model
         [~, C] = gaussianVario(c, h, thresh,include_nugget); 
         
     case 'exponential'
-        [~, C] = exponentialVario(c, h);
+        [~, C] = exponentialVario(c, h, include_nugget);
 
     case 'power'
-        [~, C] = linearVario(c, h, include_nugget);
+        [~, C] = powerVario(c, h);
 
     case 'matern'
         nu = c(3); 
