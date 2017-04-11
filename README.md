@@ -13,8 +13,7 @@ do this. Variogramfit is an alternative to lsqcurvefit from Wolfgang Schwanghart
 that testing_geostatm currently calls randomfield. 
 
 ## License
-All of the codes in this repository except those listed above under dependencies is licensed under the MIT license. It is free to use and distribute. If you use this code for a publication please do 
-include a citation to this repository. 
+All of the codes in this repository except those listed above under dependencies is licensed under the MIT license. It is free to use and distribute. If you use this code for a publication please do include a citation to this repository. Licenses for the dependencies above are included in the repository.
 
 ## Example
 xy = rand(10, 2); 
