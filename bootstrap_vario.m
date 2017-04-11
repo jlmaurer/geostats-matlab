@@ -6,27 +6,49 @@ nlag = 20;
 
 h = h(:); 
 v = v(:); 
-[all_sills, all_ranges, all_nuggets] = deal(zeros(Nboot,1)); 
+nparam = length(c0); 
+
+param = zeros(Nboot, nparam); 
+
 for loop = 1:Nboot
     [hboot,index] = datasample(h, length(h)); 
     vboot = v(index);
     
     % run the solver
-    param= zeros(1,3);
     if strcmp(solver, 'lsqcurvefit')==1
-        param = estimate_SVparams(model, hboot, vboot, c0, lb, ub);
+        param(loop,:) = estimate_SVparams(model, hboot, vboot, c0, lb, ub);
     elseif strcmp(solver, 'variogramfit')==1
-        [param(2),param(1),param(3)] = variogramfit(hboot,vboot,c0(2),c0(1),nlag,'model', 'gaussian', 'nugget', c0(3));
+        if nparam == 3
+            [param(loop,2),param(loop, 1),param(loop,3)] = variogramfit(hboot,...
+                vboot,c0(2),c0(1),nlag,'model', model, 'nugget', c0(3));
+        elseif nparam==2
+            [param(loop,2),param(loop, 1),param(loop,3)] = variogramfit(hboot,...
+                vboot,c0(2),c0(1),nlag,'model', model);
+        elseif nparam==1
+            param(loop) = mean(vboot); 
+        else
+            error('This condition is not yet handled using variogramfit')
+        end
     else
         error('Invalid solver')
     end
-    all_sills(loop) = param(1); 
-    all_ranges(loop) = param(2); 
-    all_nuggets(loop) = param(3); 
 end
-p.s = all_sills; 
-p.r = all_ranges; 
-p.n = all_nuggets; 
+
+if nparam==3
+    p.s = param(:,1); 
+    p.r = param(:,2); 
+    p.n = param(:,3); 
+    names = {'Sill', 'Range', 'Nugget'}; 
+elseif nparam==2
+    p.s = param(:,1); 
+    p.r = param(:,2); 
+    names = {'Sill', 'Range'}; 
+elseif nparam==1
+    p.n = param(:); 
+    names = {'Nugget'}; 
+else
+    error('This condition is not yet handled')
+end
 
 if strcmp(solver, 'lsqcurvefit')==1
     best_param = estimate_SVparams(model, h, v, c0, lb, ub);
@@ -36,6 +58,6 @@ else
     error('Invalid solver id')
 end
 
-graph_correlations([p.s, p.n, p.r], 2, {'Sill', 'Nugget', 'Range'}, 0, 0); 
+graph_correlations(param, 2, names, 0, 0); 
 
 end
