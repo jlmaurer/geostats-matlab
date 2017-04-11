@@ -1,4 +1,5 @@
 function [Dest, Dsig, Dreal, param, trEst] = geostatm (xy, data, modelparams, trend, Nboot, Nreal)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This function runs a complete geostatistical analysis workflow for data located at points xy (assuming 
 % Cartesian coordinate system) and interpolates onto points XY. The function also can return conditional
 % realizations. However, this function won't do all the work for you, because it expects a covariance model,
@@ -28,6 +29,9 @@ function [Dest, Dsig, Dreal, param, trEst] = geostatm (xy, data, modelparams, tr
 %   Dreal   - Nreal conditional realizations at the estimation locations
 %   param   - estimated variogram parameters for the specified covariance model
 %   trEst   - estimate parameters for the trend
+%
+% Author: Jeremy  Maurer, copyright 2017. MIT License. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % specify defaults
 if nargin < 6,  Nreal = []; end

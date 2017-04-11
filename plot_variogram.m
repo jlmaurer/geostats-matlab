@@ -1,5 +1,5 @@
 function [] = plot_variogram(hraw, vraw, N, plotraw)
-% This function plots the empirical, binned, and theoretical variograms. 
+% This function plots the raw and binned variograms. 
 
 if nargin < 4
     if nargin < 3
@@ -15,7 +15,7 @@ xbin2 = linspace(0,ceil(step/3),5);
 xbin = sort([xbin1,xbin2]); 
 
 % compute binned variogram
-[hb, vb] = varioexp_(hraw, vraw, xbin);
+[hb, vb] = expvario(hraw, vraw, xbin);
 
 figure; 
 if plotraw==1

@@ -148,10 +148,8 @@ function [a,c,n,S] = variogramfit(h,gammaexp,a0,c0,numobs,varargin)
 % Author: Wolfgang Schwanghart (w.schwanghart[at]unibas.ch)
 %
 % Modified by Jeremy Maurer, March 25, 2017
-% Changed upper bound on range to be max(h)
-
-
-
+% Changed upper bound on range to be max(h). See license file for
+% variogramfit in 'license_variogramfit.txt'.
 
 % check input arguments
 

@@ -38,7 +38,11 @@ switch model
         [~, C] = exponentialVario(c, h, include_nugget);
 
     case 'power'
+    % currently no nugget implemented with power law/linear variograms
         [~, C] = powerVario(c, h);
+
+    case 'spherical'
+        [~,C] = sphericalVario(c, h, include_nugget); 
 
     case 'matern'
         nu = c(3); 

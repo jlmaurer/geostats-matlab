@@ -145,6 +145,8 @@ function [F,KL] = randomfield(corr,mesh,varargin)
 %
 % Copyright 2011 Qiqi Wang (qiqi@mit.edu) and Paul G. Constantine 
 % (paul.constantine@stanford.edu).
+%
+% See license file for variogramfit in 'license_randomfield.txt'.
 
 if nargin<2, error('Not enough inputs.'); end
 

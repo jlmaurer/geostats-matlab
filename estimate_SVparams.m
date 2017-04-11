@@ -26,19 +26,11 @@ elseif mod == 5 || mod ==6 || mod ==7 || mod == 8 || mod ==9
     
 elseif mod == 10 || mod ==11 || mod ==12 
     % Power Law
-    if numel(c0)==3
-        f = @(c, h) c(1)*(h.^c(2)) + c(3)*(h~=0);
-    else
-        f = @(c, h) c(1)*(h.^c(2)); 
-    end
+        f = @powerVario;
     
 elseif mod == 13 || mod ==14
     % Spherical
-    if numel(c0)==3
-        f = @(c, h) c(1)*(1.5*h./c(2) - 0.5*(h.^3./c(2).^3)) + c(3)*(h~=0);
-    else
-        f = @(c, h) c(1)*(1.5*h./c(2) - 0.5*(h.^3./c(2).^3));
-    end
+    f = @sphericalVario;
     
 elseif mod == 15 || mod ==16 || mod==17
     % Nugget
