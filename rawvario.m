@@ -21,7 +21,7 @@ else
 end
 
 % build raw variogram
-rawVario = 0.5*L2_distance(yValDetrend,yValDetrend).^2;
+rawVario = 0.5*distance_(yValDetrend,yValDetrend).^2;
 
 % if anisotropy matrix provided, transform to isotropic coordinates
 if ~isempty(MT)
@@ -29,6 +29,6 @@ if ~isempty(MT)
 else
    yLocEff=yLoc;
 end
-hEff = L2_distance(yLocEff,yLocEff);
+hEff = distance_(yLocEff,yLocEff);
 
 end

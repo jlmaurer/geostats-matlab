@@ -13,15 +13,15 @@ function [C] = compute_covariance(model, c, xy, XY, include_nugget)
 % License: MIT
 
 % default parameter values
-if nargin < 5, include_nugget=1; end
+if nargin < 5, include_nugget=0; end
 
 % compute distance
 if numel(xy) == 1
     h = 0; 
 elseif nargin < 4
-    h = L2_distance(xy, xy); 
+    h = distance_(xy, xy); 
 else
-    h = L2_distance(xy, XY); 
+    h = distance_(xy, XY); 
 end
 
 switch model
@@ -30,19 +30,20 @@ switch model
         C(1) = c; 
 
     case 'Gaussian'
-        
         % set a lower threshold on covariance and always include nugget
         thresh = (c(1)+c(3))*eps; 
-        [~, C] = gaussianVario(c, h, thresh,1); 
+        [~, C] = gaussianVario(c, h, thresh,include_nugget); 
         
     case 'exponential'
         [~, C] = exponentialVario(c, h);
 
-    case 'linear'
+    case 'power'
         [~, C] = linearVario(c, h, include_nugget);
 
     case 'matern'
-        [~,C] = maternVario(c, h, include_nugget);
+        nu = c(3); 
+        if include_nugget==1,c = [c(1:2), c(4)]; else, c= c(1:2); end
+        [~,C] = maternVario(c, nu, h, include_nugget);
 end
 
 end

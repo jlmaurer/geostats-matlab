@@ -1,7 +1,7 @@
-function [p,best_param] = bootstrap_vario(h, v, model, c0, solver, Nboot)
+function [p,best_param] = bootstrap_vario(h, v, model, c0, solver, lb, ub, Nboot)
 % This function bootstraps a variogram solver to get an idea of the
 % uncertainty in the estimate. 
-if nargin < 7, Nboot = 1000;  end
+
 nlag = 20; 
 
 h = h(:); 
@@ -14,7 +14,7 @@ for loop = 1:Nboot
     % run the solver
     param= zeros(1,3);
     if strcmp(solver, 'lsqcurvefit')==1
-        param = estimate_SVparams(model, hboot, vboot, c0, max(h(:))/4);
+        param = estimate_SVparams(model, hboot, vboot, c0, lb, ub);
     elseif strcmp(solver, 'variogramfit')==1
         [param(2),param(1),param(3)] = variogramfit(hboot,vboot,c0(2),c0(1),nlag,'model', 'gaussian', 'nugget', c0(3));
     else
@@ -29,7 +29,7 @@ p.r = all_ranges;
 p.n = all_nuggets; 
 
 if strcmp(solver, 'lsqcurvefit')==1
-    best_param = estimate_SVparams(model, h, v, c0, max(h(:))/4);
+    best_param = estimate_SVparams(model, h, v, c0, lb, ub);
 elseif strcmp(solver, 'variogramfit')==1
     [best_param(2),best_param(1),best_param(3)] = variogramfit(h,v,c0(2),c0(1),nlag,'model', 'gaussian', 'nugget', c0(3));
 else

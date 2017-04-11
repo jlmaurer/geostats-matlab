@@ -1,4 +1,4 @@
-function [var, cov] = linearVario(param,h, include_nugget)
+function [var, cov] = powerVario(param,h, include_nugget)
 % this function computes a linear semivariance function
 
     if nargin < 3, include_nugget = 0; end
