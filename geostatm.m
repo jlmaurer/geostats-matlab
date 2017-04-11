@@ -8,12 +8,14 @@ function [Dest, Dsig, Dreal, param, trEst] = geostatm (xy, data, modelparams, tr
 % kriging. The function assumes you've already corrected for anisotropy in xy and XY.
 %
 % Inputs: 
-%   xy      - observation locations in 2-D space, assumes a Cartesian coordinate system
-%   data    - observation values at each location
-%   XY      - estimation points in 2-D space
-%   model   - covariance model to use. 'Gaussian,' 'Exponential,' 'nugget,'
-%               'linear,' 'matern.'
-%   c0      - initial guesses for the parameters to use for the covariance model. 
+%   xy          - observation locations in 2-D space, assumes a Cartesian coordinate system
+%   data        - observation values at each location
+%   modelparams - a structure containing the following fields: 
+%                   XY      - estimation points in 2-D space
+%                   covtype - covariance model to use.
+%                   c0      - vector of initial guesses for the parameters to use for the covariance model. 
+%                   lb      - vector of lower bounds on parameter estimates
+%                   ub      - vector of upper bounds on parameter estimates 
 %   trend   - structure containing the following fields:
 %               - flag:     0 or 1, 1 if a trend is to be estimated
 %               - xy:       observation locations (only needed if trend.flag ==1). Currenlty only linear trends 
