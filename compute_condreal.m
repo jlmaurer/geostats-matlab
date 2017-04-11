@@ -12,7 +12,8 @@ function [Dreal] = compute_condreal(xy, XY, d,model, c, lambda, Nreal)
     [COV] = compute_covariance(model, c, X);
 
     % compute the cholesky factorization of SIG
-    [C,p] = chol(COV+4*sqrt(eps)*eye(size(COV))); 
+    [C, p] = chol(COV);
+    if p>0, [C,p] = chol(COV+4*sqrt(eps)*eye(size(COV))); end
     if p~=0, error('COV not PD'); end
     
     % Generate conditional realizations
