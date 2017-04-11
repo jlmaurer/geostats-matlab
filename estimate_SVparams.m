@@ -34,7 +34,7 @@ elseif mod == 13 || mod ==14
     
 elseif mod == 15 || mod ==16 || mod==17
     % Nugget
-    params = mean(vraw); 
+    params = mean(vraw(:)); 
     exitflag = []; 
     output = []; 
     return
