@@ -43,8 +43,15 @@ end
 rawVario = 0.5*distance_(dataDetrend,dataDetrend).^2;
 
 % if anisotropy matrix provided, transform to isotropic coordinates
+dir = []; 
 if ~isempty(MT)
-    XEff=(MT*X')';
+    if isscalar(MT)
+        dir = MT; 
+        XEff = zeros(size(X));
+        XEff(:,dir) = X(:,dir); 
+    else
+        XEff=(MT*X')';
+    end
 else
     XEff = X; 
 end

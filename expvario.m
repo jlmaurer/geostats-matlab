@@ -34,7 +34,7 @@ function [hExp,expVario] = expvario(hEff,rawVario,xBin)
 
 % build the experimental variogram
 nBins=length(xBin)-1;
-[hExp,expVario] =deal(zeros(1,nbins)); 
+[hExp,expVario] =deal(zeros(1,nBins)); 
 for iBin=1:nBins
    iBinContains=find(xBin(iBin)<hEff & hEff<=xBin(iBin+1));
    

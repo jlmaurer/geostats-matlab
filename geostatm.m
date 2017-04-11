@@ -8,14 +8,20 @@ function [Dest, Dsig, Dreal, param, trEst] = geostatm (xy, data, modelparams, tr
 % kriging. The function assumes you've already corrected for anisotropy in xy and XY.
 %
 % Inputs: 
-%   xy          - observation locations in 2-D space, assumes a Cartesian coordinate system
+%   xy          - observation locations in 2-D space, assumes a Cartesian
+%                   coordinate system
 %   data        - observation values at each location
 %   modelparams - a structure containing the following fields: 
-%                   XY      - estimation points in 2-D space
-%                   covtype - covariance model to use.
-%                   c0      - vector of initial guesses for the parameters to use for the covariance model. 
-%                   lb      - vector of lower bounds on parameter estimates
-%                   ub      - vector of upper bounds on parameter estimates 
+%                   XY          - estimation points in 2-D space
+%                   covtype     - covariance model to use.
+%                   c0          - vector of initial guesses for the parameters 
+%                                   to use for the covariance model. 
+%                   lb          - vector of lower bounds on parameter estimates
+%                   ub          - vector of upper bounds on parameter estimates 
+%                   direction   - empty unless a single component direction
+%                                   should be specified for the variogram. This
+%                                   is the only component that will be used 
+%                                   to compute the lag distances h. 
 %   trend   - structure containing the following fields:
 %               - flag:     0 or 1, 1 if a trend is to be estimated
 %               - xy:       observation locations (only needed if trend.flag ==1). Currenlty only linear trends 
@@ -45,13 +51,14 @@ model = modelparams.covtype;
 c0 = modelparams.c0; 
 lb = modelparams.lb; 
 ub = modelparams.ub; 
+dir = modelparams.direction; 
 
 % The function assumes you've already corrected for anisotropy
-[h,v, trEst] = rawvario(xy,data(:), [], trend); 
+[h,v, trEst] = rawvario(xy,data(:), dir, trend); 
 
 % uncomment below to plot (empirical) variogram. Helpful for
 % troubleshooting.
-% plot_variogram(h, v)
+plot_variogram(h, v)
 
 %% Fitting a variogram
 % param = [sill, range, nugget] for Gaussian, exponential
