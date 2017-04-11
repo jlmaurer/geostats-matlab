@@ -44,33 +44,10 @@ rawVario = 0.5*distance_(dataDetrend,dataDetrend).^2;
 
 % if anisotropy matrix provided, transform to isotropic coordinates
 if ~isempty(MT)
-   XEff=(MT*X')';
-elselocated at X (an MxD matrix, where .
-% Inputs: 
-%   X       - MxD matrian MxD matrix, where M is observations
-%               and D is the dimension of space
-%   data    - Mx1 vector of values at each observation location
-%   MT      - an anisotropy matrix to be applied to X
-%   trend   - a structure containing fields: 
-%               flag:   0/1         indicates whether there is a trend
-%               xy:     same as X   Locations to estimate trend if flag =1 
-endlocated at X (an MxD matrix, where .
-% Inputs: 
-%   X       - MxD matrix of 
-hEff = distancan MxD matrix, where M is the number of observations
-%               and D is the dimension of space
-%   data    - Mx1 vector of values at each observation location
-%   MT      - an anisotropy matrix to be applied to X
-%   trend   - a structure containing fields: 
-%               flag:   0/1         indicates whether there is a trend
-%               xy:     same as X   Locations to estimate trend if flag =1 
-located at X (an MxD matrix, where 
-% M .
-% Inputs: 
-%   X       - MxDan MxD matrix, where M is the number of observations
-%               and D is the dimension of space
-%   data    - Mx1 vector of values at each observation location.
-%   MT      - an anisotropy matrix to be applied to X
-%   trend   - a structure containing fields: 
-%               flag:   0/1         indicates whether there is a trend
-%               xy:     same as Xd  Locations to estimate trend if flag =1 
+    XEff=(MT*X')';
+else
+    XEff = X; 
+end
+hEff = distance_(XEff,XEff);
+
+end
