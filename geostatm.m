@@ -45,7 +45,7 @@ ub = modelparams.ub;
 
 % uncomment below to plot (empirical) variogram. Helpful for
 % troubleshooting.
-plot_variogram(h, v)
+% plot_variogram(h, v)
 
 %% Fitting a variogram
 % param = [sill, range, nugget] for Gaussian, exponential
