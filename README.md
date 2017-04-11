@@ -19,6 +19,7 @@ All of the codes in this repository except those listed above under dependencies
 xy = rand(10, 2); 
 data = rand(10,1); 
 modelparams.covtype = 'nugget';
+modelparams.direction = []; 
 modelparams.c0 = [mean(data)];
 [X,Y] = meshgrid(linspace(0, 1, 10), linspace(0,1,10)); 
 modelparams.XY = [X(:), Y(:)];
